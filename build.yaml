@@ -1,0 +1,50 @@
+builders:
+  generate_exports:
+    import: "package:_xyz_generate_exports/xyz_generate_exports.dart"
+    builder_factories: [
+      "configsExportsBuilder",
+      "managersExportsBuilder",
+      "modelsExportsBuilder",
+      "routingExportsBuilder",
+      "servicesExportsBuilder",
+      "themesExportsBuilder",
+      "utilsExportsBuilder",
+      "widgetsExportsBuilder",
+      "screensExportsBuilder",
+
+      # xyz_shared
+      "sharedConfigsExportsBuilder",
+      "sharedManagersExportsBuilder",
+      "sharedModelsExportsBuilder",
+      "sharedRoutingExportsBuilder",
+      "sharedServicesExportsBuilder",
+      "sharedThemesExportsBuilder",
+      "sharedUtilsExportsBuilder",
+      "sharedWidgetsExportsBuilder",
+      
+    ]
+    build_extensions: {
+      "$lib$": [
+        "configs/all_configs.dart",
+        "models/all_models.dart",
+        "routing/all_routing.dart",
+        "screens/all_screens.dart",
+        "services/all_services.dart",
+        "themes/all_themes.dart",
+        "utils/all_utils.dart",
+        "widgets/all_widgets.dart",
+
+        # xyz_shared
+        "xyz_shared/src/configs/all_configs.dart",
+        "xyz_shared/src/models/all_models.dart",
+        "xyz_shared/src/routing/all_routing.dart",
+        "xyz_shared/src/screens/all_screens.dart",
+        "xyz_shared/src/services/all_services.dart",
+        "xyz_shared/src/themes/all_themes.dart",
+        "xyz_shared/src/utils/all_utils.dart",
+        "xyz_shared/src/widgets/all_widgets.dart",
+      ],
+    }
+    auto_apply: dependents
+    build_to: source
+    applies_builders: ["source_gen:combining_builder"]
