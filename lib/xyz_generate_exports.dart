@@ -131,11 +131,17 @@ class AllScreensExportsBuilder implements Builder {
         linesScreenTypes = <String>[],
         linesScreenMetadata = <String>[],
         linesConfigurationCasts = <String>[];
-    final paths = await buildStep
-        .findAssets(Glob("lib/screens/**"))
-        .map((final l) => l.path.replaceFirst("lib/screens/", ""))
-        .toList()
-      ..sort();
+    final paths = [
+      ...(await buildStep
+          .findAssets(Glob("lib/screens/**"))
+          .map((final l) => l.path.replaceFirst("lib/screens/", ""))
+          .toList()),
+      ...(await buildStep
+          .findAssets(Glob("lib/xyz_shared/src/screens/**"))
+          .map((final l) => l.path.replaceFirst("lib", ""))
+          .toList())
+    ]..sort();
+
     for (final path in paths) {
       final b0 =
           // May not contain "/_"...
